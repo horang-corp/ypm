@@ -25,7 +25,8 @@ await ypm.add({ git_url: "https://github.com/horang-corp/ypm" });
 
 ### 브라우저 환경에서
 
-In-memory 파일 시스템 라이브러리인 memfs와 같이 사용 가능합니다.
+In-memory 파일 시스템 라이브러리인
+[memfs](https://github.com/streamich/memfs/tree/master)와 함께 사용 가능합니다.
 
 ```bash
 npm install memfs
