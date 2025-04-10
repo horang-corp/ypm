@@ -3,6 +3,13 @@ import http from "isomorphic-git/http/web";
 type IFs = typeof import("fs");
 
 export default class GitSource {
+	readonly isBrowser = typeof window !== "undefined" &&
+		typeof window.document !== "undefined";
+
+	get useCorsProxy(): boolean {
+		return this.isBrowser;
+	}
+
 	constructor(private readonly fs: IFs) {
 	}
 
@@ -29,7 +36,9 @@ export default class GitSource {
 		const destinationPath = this.getDestinationPath(url);
 		await git.clone({
 			fs: this.fs,
-			corsProxy: "https://cors.isomorphic-git.org",
+			corsProxy: this.useCorsProxy
+				? "https://cors.isomorphic-git.org"
+				: undefined,
 			http,
 			dir: destinationPath,
 			url: url,

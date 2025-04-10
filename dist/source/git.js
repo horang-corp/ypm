@@ -41,7 +41,6 @@ class GitSource {
     }
     downloadPackage(url) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(this.useCorsProxy);
             const destinationPath = this.getDestinationPath(url);
             yield isomorphic_git_1.default.clone({
                 fs: this.fs,

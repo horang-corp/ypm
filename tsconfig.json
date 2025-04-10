@@ -112,6 +112,7 @@
   },
   "exclude": [
     "ys_modules",
-    "node_modules"
+    "node_modules",
+    "local_test"
   ]
 }
