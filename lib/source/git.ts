@@ -1,9 +1,9 @@
 import git from "isomorphic-git";
 import http from "isomorphic-git/http/web";
-import type { FsClient } from "../fs";
+type IFs = typeof import("fs");
 
 export default class GitSource {
-	constructor(private readonly fs: FsClient) {
+	constructor(private readonly fs: IFs) {
 	}
 
 	private getRemoteRepoName(url: string): string {

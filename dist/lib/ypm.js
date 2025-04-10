@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const git_1 = __importDefault(require("./source/git"));
-// This is Package Manager for YS
 class Ypm {
     constructor({ fs, }) {
         this.fs = fs;
@@ -28,6 +27,14 @@ class Ypm {
                 throw new Error("No source specified");
             }
             yield source.downloadPackage(git_url);
+        });
+    }
+    remove(_a) {
+        return __awaiter(this, arguments, void 0, function* ({ package_name, }) {
+            yield this.fs.promises.rm(`./ys_modules/${package_name}`, {
+                recursive: true,
+                force: true,
+            });
         });
     }
 }
