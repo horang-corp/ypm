@@ -1,5 +1,6 @@
 import GitSource from "./source/git";
 import type Source from "./source/source";
+import path from "path";
 type IFs = typeof import("fs");
 
 export default class Ypm {
@@ -13,11 +14,26 @@ export default class Ypm {
 		this.fs = fs;
 	}
 
+	private async preparePackageDir() {
+		const packageDir = "./ys_modules";
+		try {
+			await this.fs.promises.mkdir(packageDir);
+			await this.fs.promises.writeFile(
+				path.join(packageDir, ".gitignore"),
+				"*",
+			);
+		} catch (err) {
+			return;
+		}
+	}
+
 	public async add({
 		git_url,
 	}: {
 		git_url: string | null;
 	}) {
+		await this.preparePackageDir();
+
 		let source: Source;
 
 		if (git_url) {
@@ -33,7 +49,8 @@ export default class Ypm {
 	}: {
 		package_name: string;
 	}) {
-		await this.fs.promises.rm(`./ys_modules/${package_name}`, {
+		const packageDir = "./ys_modules";
+		await this.fs.promises.rm(path.join(packageDir, package_name), {
 			recursive: true,
 			force: true,
 		});
