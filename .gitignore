@@ -4,3 +4,5 @@ pnpm-lock.yaml
 /local_test
 /ys_modules
 /test_dir
+/docs/vitepress/.vitepress/dist
+/docs/vitepress/.vitepress/cache
