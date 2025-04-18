@@ -95,12 +95,10 @@ class Entrypoint {
     }
     remove(_a) {
         return __awaiter(this, arguments, void 0, function* ({ package_name, }) {
-            yield this.fs.promises.rm(path_1.default.join(this.virtualEnv.path, package_name), {
-                recursive: true,
-            });
             const manifest = this.rootPackage.manifest;
             manifest.removeDependency(package_name);
             yield manifest.save(this.fs, this.workingDir);
+            yield this.sync();
         });
     }
     sync() {

@@ -74,12 +74,10 @@ export class Entrypoint {
 	}: {
 		package_name: string;
 	}) {
-		await this.fs.promises.rm(path.join(this.virtualEnv.path, package_name), {
-			recursive: true,
-		});
 		const manifest = this.rootPackage.manifest;
 		manifest.removeDependency(package_name);
 		await manifest.save(this.fs, this.workingDir);
+		await this.sync();
 	}
 
 	public async sync() {

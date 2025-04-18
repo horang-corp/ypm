@@ -51,10 +51,10 @@ class Manifest {
     }
     parseDependencies() {
         const dependenciesNode = this.yamlDoc.get("의존성");
-        const dependencies = new Map();
-        if (!dependenciesNode) {
-            return dependencies;
+        if (!dependenciesNode || (dependenciesNode === null || dependenciesNode === void 0 ? void 0 : dependenciesNode.items) === undefined) {
+            return new Map();
         }
+        const dependencies = new Map();
         for (const { key: name, value: packageOrderNode } of dependenciesNode.items) {
             let packageOrder = null;
             if (packageOrderNode instanceof yaml_1.YAMLMap) {

@@ -49,11 +49,11 @@ export class Manifest {
 		const dependenciesNode = this.yamlDoc.get("의존성") as
 			| YAMLMap<Scalar<string>, unknown>
 			| undefined;
-		const dependencies = new Map<string, PackageRef>();
-		if (!dependenciesNode) {
-			return dependencies;
+		if (!dependenciesNode || dependenciesNode?.items === undefined) {
+			return new Map();
 		}
 
+		const dependencies = new Map<string, PackageRef>();
 		for (
 			const { key: name, value: packageOrderNode } of dependenciesNode.items
 		) {
