@@ -2,7 +2,11 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  head: [["link", { rel: "icon", type: "image/svg+xml", href: "favicon.svg" }]],
+  head: [["link", {
+    rel: "icon",
+    type: "image/svg+xml",
+    href: "/favicon.svg",
+  }]],
   title: "ypm",
   description: "약속 프로그래밍 언어를 위한 패키지 매니저",
 
