@@ -15,11 +15,11 @@ import * as fs from "fs";
 
 const ypm = new Ypm({ fs: fs });
 
-// 약속 프로젝트 초기화하기.
+// 약속 프로젝트 초기화하기
 await ypm.init({ package_name: "나의_첫_약속_프로젝트" });
 // 의존성 추가하기
 await ypm.add({ git_url: "https://github.com/horang-corp/ys-calculator" });
-// 의존성 제거하기.
+// 의존성 제거하기
 await ypm.remove({ package_name: "계산기" });
 // 약속프로젝트.yaml 파일의 의존성을 동기화하기
 await ypm.sync();
